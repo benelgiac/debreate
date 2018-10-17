@@ -1,9 +1,3 @@
-#get filename of project
-#open it and parse it with main.py OpenProject.
-#This will save individually each section
-#These sections are needed in BuildPrep(), that will create a task list
-#task list is then passed to Build() that creates the package
-
 from dbr.log import Logger
 from dbr.log            import DebugEnabled
 from dbr.headless_md5   import WriteMD5
@@ -11,6 +5,7 @@ from globals.fileio     import ReadFile
 from globals.fileio     import WriteFile
 from globals.execute    import GetExecutable
 from globals.paths      import ConcatPaths
+from globals.headless_execute    import ExecuteCommand
 from dbr.headless_functions      import FileUnstripped
 import commands,argparse, os, re, shutil
 
@@ -76,7 +71,6 @@ def GetValue(page, field):
         m = regex.match(p)
         if m is not None:
             return m.group(1)
-
 
 def ParseScript(script_part):
     scripts = {}
@@ -454,10 +448,8 @@ if __name__=='__main__':
     args = arguments_init()
 
     Logger.SetLogLevel(args.loglevel)
-    Logger.Debug(__name__, u'Hello from: {}'.format(__name__))
 
-    Logger.Debug(__name__, u'Loglevel is: {}'.format(args.loglevel))
-    Logger.Debug(__name__, u'Projectfile is: {}'.format(args.projectfile))
+    Logger.Debug(__name__, u'Opening Projectfile {}'.format(args.projectfile))
 
     opened, loaded_data = OpenProject(args.projectfile)
     task_list, build_path, filename = BuildPrep(loaded_data)
