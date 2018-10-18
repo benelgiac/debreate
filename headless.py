@@ -129,7 +129,7 @@ def BuildPrep(loaded_data):
     #arch = GetField(pg_control, inputid.ARCH).GetStringSelection()
     arch = GetValue(pg_control, 'Architecture')
     
-    complete_filename = u'/home/giacomo/checkout/debreate/{}_{}_{}.deb'.format(package, version, arch)
+    complete_filename = u'{}/{}_{}_{}.deb'.format(os.getcwd(), package, version, arch)
     
     build_path = os.path.split(complete_filename)[0]
     filename = os.path.split(complete_filename)[1].split(u'.deb')[0]
