@@ -45,7 +45,8 @@ UNINSTALL_FOLDER = find "$1" -type f -print -delete; find "$1" -type d -empty -p
 
 
 FILES_executable = \
-	init.py
+	init.py \
+	headless.py
 
 FILES_root = \
 	command_line.py \
@@ -164,6 +165,7 @@ install: locale $(FILES_build) $(INSTALLED)_file install-bitmaps install-data in
 	\
 	$(MKDIR) "$${bin_dir}"; \
 	$(LINK) "$(prefix)/$(DATADIR)/init.py" "$${bin_dir}/$(PACKAGE)"; \
+	$(LINK) "$(prefix)/$(DATADIR)/headless.py" "$${bin_dir}/$(PACKAGE)-headless"; \
 	\
 	$(MKDIR) "$${pix_dir}"; \
 	$(INSTALL_DATA) "bitmaps/icon/64/logo.png" "$${pix_dir}/$(PACKAGE).png"; \

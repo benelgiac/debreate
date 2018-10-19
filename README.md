@@ -1,6 +1,6 @@
 ![][icon]
 
-## Debreate - Debian Package Builder
+## Debreate - Debian Package Builder (with headless version)
 
 
 ### Table of Contents
@@ -17,6 +17,8 @@
 Debreate is a utility to aid in creating [Debian (.deb)][wiki.deb] packages. Currently it only supports binary packaging which allows packaging of pre-compiled or scripted applications, media, artwork, etc. for personal distribution. Plans for using backends such as [dh_make][pkg.dh-make] & debuild (available in [devscripts][pkg.devscripts] package) for creating source packages are in the works. But source packaging can be quite different & is a must if you want to get your packages into a distribution's official repositories or a [Launchpad][launchpad] [Personal Package Archive (PPA)][wiki.ppa]. The latter from which [Debreate has recently become available][ppa.debreate].
 
 The definition of Debian source packages may be a little confusing (as it was for me) for those that are new to the Debian format, or perhaps packaging in general. Debian source packages are essentially no different than common tarballed source archives & they can be available in many of the popular formats such as Gzip (.tar.gz), BZip2 (.tar.bz2), XZ (tar.xz), Lzip (tar.lzip), etc. To build Debian binary packages from source code, it must first be "debianized". Debianization involves creating a directory called 'debian' within the source root folder. Files with instructions, meta data, & more are placed within to instruct Debian tools, such as debuild, on how the source must be compiled & packaged into the final .deb. This is the process that must be taken to host software on repositories such as Lauchpad's PPA system. The debianized source is uploaded, then built & packaged on-site automatically. The resulting binary package (.deb) is published to the target PPA.
+
+This fork adds a simple headless script that does not need wx to run and can be run directly from the command line. It takes as input a .dbp file, which is supposed to be created with debreate, and produces a .deb file with automatic naming. The script is very rough and do not perform any particular check on existing *.deb files before overwriting them. Please notice that this script has not been tested thoroughly and has some known limitations: in particular, it does NOT support the "launchers" section. So, if you have added launchers using the "Launcher" page in debreate, the resulting dbp file may not be usable.
 
 
 ### [Dependencies](#table-of-contents)
@@ -54,6 +56,8 @@ This is the recommended method if you are not installing from a remote APT/PPA r
 ### [Standalone Use](#table-of-contents)
 
 To run without installing, open a terminal in the extracted root directory. Then launch the file named "init.py" (***./init.py*** or ***python init.py***). It should execute via mouse-click for the system's file manager as well.
+
+For the headless version, just run the "headless.py" script. Command line options are available by running "headless.py --help".
 
 
 ### [Links](#table-of-contents)

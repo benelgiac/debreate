@@ -1,3 +1,6 @@
+#! /usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
 from dbr.log import Logger
 from dbr.log            import DebugEnabled
 from dbr.headless_md5   import WriteMD5
@@ -11,8 +14,8 @@ import commands,argparse, os, re, shutil
 
 def arguments_init():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--loglevel", help='log level amongst info error warn debug', default='debug')
-    parser.add_argument("--projectfile", help='debreate project file to open', default='debreate.dbp')
+    parser.add_argument("--loglevel", help='log level amongst info error warn debug (default=debug)', default='debug')
+    parser.add_argument("--projectfile", help='debreate project file to open (default=debreate.dbp)', default='debreate.dbp', required=True)
 
     return parser.parse_args()
 
